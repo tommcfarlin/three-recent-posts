@@ -35,4 +35,4 @@ For information about changes related to the project, be sure to review the [CHA
 
 ## More Information
 
-The complete article for this plugin can be read [on my blog]().
+The complete article for this plugin can be read [on my blog](https://tommcfarlin.com/rapid-prototyping).
