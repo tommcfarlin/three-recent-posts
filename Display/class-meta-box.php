@@ -6,6 +6,9 @@
  * @since  0.2.0
  */
 
+ namespace McFarlin\TRP\Display;
+ use McFarlin\TRP\Display\Meta_Box_Display;
+
 /**
  * Registers the Meta Box with WordPress. Defines the ID, title, display function,
  * and the post type on which it will live.
@@ -25,9 +28,11 @@ class Meta_Box {
 
 	/**
 	 * Instantiates the class by setting its property equal to a reference to its display.
+	 *
+	 * @param string $plugin_dir A reference to the root of the plugin's directory.
 	 */
-	public function __construct() {
-		$this->meta_box_display = new Meta_Box_Display();
+	public function __construct( $plugin_dir ) {
+		$this->meta_box_display = new Meta_Box_Display( $plugin_dir );
 	}
 
 	/**

@@ -6,6 +6,8 @@
  * @since  0.2.0
  */
 
+namespace McFarlin\TRP\Utility;
+
 /**
  * Queries the database for three most recent posts. Returns the query to the
  * caller so that it can be interrogates for posts or not.
@@ -41,12 +43,13 @@ class Post_Query {
 	private function get_posts() {
 
 		$args = array(
-			'post_type'   => 'post',
-			'post_status' => 'publish',
-			'orderby'     => 'date',
-			'order'       => 'desc',
+			'post_type'   	 => 'post',
+			'post_status' 	 => 'publish',
+			'posts_per_page' => 3,
+			'orderby'     	 => 'date',
+			'order'       	 => 'desc',
 		);
-		$this->query = new WP_Query( $args );
+		$this->query = new \WP_Query( $args );
 
 		return $this->query;
 	}
@@ -55,7 +58,7 @@ class Post_Query {
 	 * A helper function to determine if the query has any posts.
 	 */
 	public function has_posts() {
-		return ! $this->query->have_posts();
+		return $this->query->have_posts();
 	}
 
 	/**

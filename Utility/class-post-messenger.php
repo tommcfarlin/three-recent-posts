@@ -6,6 +6,9 @@
  * @since  0.2.0
  */
 
+namespace McFarlin\TRP\Utility;
+use McFarlin\TRP\Utility\Post_Query;
+
 /**
  * Retrieves information from the class responsible for querying the database and
  * renders it in the context of our meta box when called via the Meta Box Display.
@@ -33,10 +36,22 @@ class Post_Messenger {
 	private $message;
 
 	/**
-	 * Instantiates the class by setting a reference to the query.
+	 * A reference to the root directory of our plugin.
+	 *
+	 * @access private
+	 * @var    string $plugin_dir
 	 */
-	public function __construct() {
-		$this->query = new Post_Query();
+	private $plugin_dir;
+
+	/**
+	 * Instantiates the class by setting a reference to the query.
+	 *
+	 * @param string $plugin_dir The path to the root of the plugin directory.
+	 */
+	public function __construct( $plugin_dir ) {
+
+		$this->query      = new Post_Query();
+		$this->plugin_dir = trailingslashit( $plugin_dir );
 	}
 
 	/**
@@ -59,7 +74,7 @@ class Post_Messenger {
 	 * @access private
 	 */
 	private function get_post_message() {
-		include_once 'post-list.php';
+		include_once $this->plugin_dir . 'Display/Views/post-list.php';
 	}
 
 	/**
@@ -68,7 +83,7 @@ class Post_Messenger {
 	 * @access private
 	 */
 	private function get_description() {
-		include_once 'message-description.php';
+		include_once $this->plugin_dir . 'Display/Views/message-description.php';
 	}
 
 	/**
@@ -77,6 +92,6 @@ class Post_Messenger {
 	 * @access private
 	 */
 	private function get_no_posts_message() {
-		include_once 'no-post-list.php';
+		include_once $this->plugin_dir . 'Display/Views/no-post-list.php';
 	}
 }
